@@ -20,3 +20,6 @@ Desenvolver uma API de JOGO DA VELHA
 - Documentação com Swagger
 - Criar um Endpoint contendo as regras do jogo e me informando quais os outros endpoints preciso chamar
 
+## Diagrama Entidade e Relacionamento
+
+![Diagrama de Entidades e Relacionamentos](./Documentation/images/DER-JOGO_VELHA.png)
