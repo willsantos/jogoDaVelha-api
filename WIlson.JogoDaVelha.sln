@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilson.JogoDaVelha.Api", "Wilson.JogoDaVelha.Api\Wilson.JogoDaVelha.Api.csproj", "{5D3F1C98-D3BB-4504-942E-3F1D5A942C01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WIlson.JogoDaVelha.Domain", "WIlson.JogoDaVelha.Domain\WIlson.JogoDaVelha.Domain.csproj", "{3CAF1777-CBC2-4DAE-8364-19091E8EADB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilson.JogoDaVelha.IoC", "Wilson.JogoDaVelha.IoC\Wilson.JogoDaVelha.IoC.csproj", "{B3988470-29E6-4ED7-A096-C8F39BC7E9B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilson.JogoDaVelha.CrossCutting", "Wilson.JogoDaVelha.CrossCutting\Wilson.JogoDaVelha.CrossCutting.csproj", "{D3AFDC85-CE47-47DE-8F4A-A1BAD6E62A6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilson.JogoDavelha.Service", "Wilson.JogoDavelha.Service\Wilson.JogoDavelha.Service.csproj", "{3753261F-31E8-4A97-9AB6-52AE64BF492C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilson.JogoDaVelha.Repository", "Wilson.JogoDaVelha.Repository\Wilson.JogoDaVelha.Repository.csproj", "{71D8F93D-0E58-472C-9BD7-20EB4FF77E6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D3F1C98-D3BB-4504-942E-3F1D5A942C01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D3F1C98-D3BB-4504-942E-3F1D5A942C01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D3F1C98-D3BB-4504-942E-3F1D5A942C01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D3F1C98-D3BB-4504-942E-3F1D5A942C01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CAF1777-CBC2-4DAE-8364-19091E8EADB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CAF1777-CBC2-4DAE-8364-19091E8EADB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CAF1777-CBC2-4DAE-8364-19091E8EADB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CAF1777-CBC2-4DAE-8364-19091E8EADB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3988470-29E6-4ED7-A096-C8F39BC7E9B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3988470-29E6-4ED7-A096-C8F39BC7E9B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3988470-29E6-4ED7-A096-C8F39BC7E9B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3988470-29E6-4ED7-A096-C8F39BC7E9B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3AFDC85-CE47-47DE-8F4A-A1BAD6E62A6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3AFDC85-CE47-47DE-8F4A-A1BAD6E62A6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3AFDC85-CE47-47DE-8F4A-A1BAD6E62A6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3AFDC85-CE47-47DE-8F4A-A1BAD6E62A6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3753261F-31E8-4A97-9AB6-52AE64BF492C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3753261F-31E8-4A97-9AB6-52AE64BF492C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3753261F-31E8-4A97-9AB6-52AE64BF492C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3753261F-31E8-4A97-9AB6-52AE64BF492C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71D8F93D-0E58-472C-9BD7-20EB4FF77E6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D8F93D-0E58-472C-9BD7-20EB4FF77E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71D8F93D-0E58-472C-9BD7-20EB4FF77E6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71D8F93D-0E58-472C-9BD7-20EB4FF77E6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
