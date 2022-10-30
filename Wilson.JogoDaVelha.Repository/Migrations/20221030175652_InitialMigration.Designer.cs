@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wilson.JogoDaVelha.Repository;
 
@@ -11,9 +12,10 @@ using Wilson.JogoDaVelha.Repository;
 namespace Wilson.JogoDaVelha.Repository.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221030175652_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,39 +65,6 @@ namespace Wilson.JogoDaVelha.Repository.Migrations
                     b.ToTable("games", (string)null);
                 });
 
-            modelBuilder.Entity("WIlson.JogoDaVelha.Domain.Entities.PlayEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("GameId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PlayerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Symbol")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameId");
-
-                    b.HasIndex("PlayerId");
-
-                    b.ToTable("Plays");
-                });
-
             modelBuilder.Entity("WIlson.JogoDaVelha.Domain.Entities.PlayerEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -131,25 +100,6 @@ namespace Wilson.JogoDaVelha.Repository.Migrations
                     b.HasOne("WIlson.JogoDaVelha.Domain.Entities.PlayerEntity", null)
                         .WithMany("Games")
                         .HasForeignKey("PlayerEntityId");
-                });
-
-            modelBuilder.Entity("WIlson.JogoDaVelha.Domain.Entities.PlayEntity", b =>
-                {
-                    b.HasOne("WIlson.JogoDaVelha.Domain.Entities.GameEntity", "Game")
-                        .WithMany()
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WIlson.JogoDaVelha.Domain.Entities.PlayerEntity", "Player")
-                        .WithMany()
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Game");
-
-                    b.Navigation("Player");
                 });
 
             modelBuilder.Entity("WIlson.JogoDaVelha.Domain.Entities.PlayerEntity", b =>

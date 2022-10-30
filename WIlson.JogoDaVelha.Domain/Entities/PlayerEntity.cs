@@ -14,4 +14,8 @@ public class PlayerEntity
 
     public DateTime? DeletedAt { get; set; } = null;
     
+    
+    public IList<GameEntity> Games { get; set; }
+    
+    
 }

@@ -8,11 +8,14 @@ public class ApiDbContext : DbContext
 {
     public ApiDbContext() { }
     public DbSet<PlayerEntity> Players { get; set; }
+    public DbSet<GameEntity> Games { get; set; }
+    public DbSet<PlayEntity> Plays { get; set; }
 
     public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<PlayerEntity>(new PlayerEntityMap().Configure);
+        modelBuilder.Entity<GameEntity>(new GameEntityMap().Configure);
     }
 }
