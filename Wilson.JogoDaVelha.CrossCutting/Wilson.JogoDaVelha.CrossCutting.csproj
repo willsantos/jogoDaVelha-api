@@ -12,10 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Mappers" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\WIlson.JogoDaVelha.Domain\WIlson.JogoDaVelha.Domain.csproj" />
       <ProjectReference Include="..\Wilson.JogoDaVelha.Repository\Wilson.JogoDaVelha.Repository.csproj" />
       <ProjectReference Include="..\Wilson.JogoDavelha.Service\Wilson.JogoDavelha.Service.csproj" />

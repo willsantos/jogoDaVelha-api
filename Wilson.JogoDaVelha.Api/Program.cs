@@ -1,7 +1,12 @@
+using Wilson.JogoDaVelha.IoC;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("api");
 
+NativeInjectorBootStrapper.RegisterAppDependencies(builder.Services);
+NativeInjectorBootStrapper.RegisterAppDependenciesContext(builder.Services, connectionString);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

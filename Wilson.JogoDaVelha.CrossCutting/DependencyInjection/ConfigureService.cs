@@ -6,6 +6,7 @@ public static class ConfigureService
 {
     public static void ConfigureDependenciesService(IServiceCollection serviceColletion)
     {
-        
+        //serviceColletion.AddScoped<IPlayerService, PlayerService>();
     }
+    
 }
