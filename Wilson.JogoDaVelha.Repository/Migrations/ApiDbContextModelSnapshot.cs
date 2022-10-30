@@ -22,6 +22,8 @@ namespace Wilson.JogoDaVelha.Repository.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+<<<<<<< Updated upstream
+=======
             modelBuilder.Entity("WIlson.JogoDaVelha.Domain.Entities.GameEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -93,9 +95,10 @@ namespace Wilson.JogoDaVelha.Repository.Migrations
 
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("Plays");
+                    b.ToTable("Plays", (string)null);
                 });
 
+>>>>>>> Stashed changes
             modelBuilder.Entity("WIlson.JogoDaVelha.Domain.Entities.PlayerEntity", b =>
                 {
                     b.Property<int>("Id")
