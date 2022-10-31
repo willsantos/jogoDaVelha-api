@@ -22,9 +22,9 @@ public class PlayRepository: IPlayRepository
         throw new NotImplementedException();
     }
 
-    public  Task<PlayEntity> GetById(int id)
+    public async Task<PlayEntity> GetById(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Plays.Where(prop=>prop.Id ==id).AsNoTracking().FirstOrDefaultAsync();
     }
 
     public async Task<PlayEntity> Post(PlayEntity request)

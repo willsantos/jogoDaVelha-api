@@ -9,12 +9,14 @@ namespace Wilson.JogoDavelha.Services;
 public class PlayService : IPlayService
 {
     private readonly IPlayRepository _playRepository;
+    private readonly IGameService _gameService;
     private readonly IMapper _mapper;
 
 
-    public PlayService(IPlayRepository playRepository, IMapper mapper)
+    public PlayService(IPlayRepository playRepository,IGameService gameService, IMapper mapper)
     {
         _playRepository = playRepository;
+        _gameService = gameService;
         _mapper = mapper;
     }
     
@@ -37,10 +39,35 @@ public class PlayService : IPlayService
 
     public async Task<PlayResponse> Post(PlayRequest request)
     {
+        if(!await CheckGameExists(request.GameId))
+            throw new ArgumentException("Partida não existe");
+
+        await CheckPlayerInGame(request.PlayerId,request.GameId);
+        
+        
         var playEntity = _mapper.Map<PlayEntity>(request);
         var playCreated = await _playRepository.Post(playEntity);
         
         return _mapper.Map<PlayResponse>(playCreated);
+    }
+
+    private async Task<bool> CheckPlayerInGame(int playerId, int gameId)
+    {
+        var game = await _gameService.GetById(gameId);
+        return game.PlayerA == playerId || game.PlayerB == playerId;
+    }
+
+    private async Task<bool> CheckGameExists(int gameId)
+    {
+        try
+        {
+            await _gameService.GetById(gameId);
+            return true;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
     }
 
     public Task<PlayResponse> Put(PlayRequest request, int? id)

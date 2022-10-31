@@ -31,6 +31,7 @@ public class PlayerService : IPlayerService
             if(player == null)
                 throw new Exception("Usuário não existe");
         
+            
             return _mapper.Map<PlayerResponse>(player);
     }
 
