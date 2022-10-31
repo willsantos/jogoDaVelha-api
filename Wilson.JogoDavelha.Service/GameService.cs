@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using WIlson.JogoDaVelha.Domain.Contracts.Game;
 using WIlson.JogoDaVelha.Domain.Entities;
+using WIlson.JogoDaVelha.Domain.Enums;
 using WIlson.JogoDaVelha.Domain.Interfaces.Repositories;
 using WIlson.JogoDaVelha.Domain.Interfaces.Services;
 
@@ -39,7 +40,9 @@ public class GameService : IGameService
         if (!await CheckUserExists(request.PlayerB))
             throw new ArgumentException("Jogador B não está cadastrado, utilize a rota de cadastro");
 
-      
+        var status = request.Status;
+        if (!Enum.IsDefined(typeof(GameStatusEnum), request.Status))
+            throw new ArgumentException("Status de partida invalido");
         
         
         var gameRequest = _mapper.Map<GameEntity>(request);
