@@ -9,8 +9,8 @@ public static class ConfigureRepository
 {
     public static void ConfigureDependenciesRepository(IServiceCollection serviceCollection,string connectionString)
     {
-        serviceCollection.AddScoped<IPlayerRepository, PlayerRepository>();
         serviceCollection.AddScoped<IGameRepository, GameRepository>();
+        serviceCollection.AddScoped<IPlayerRepository, PlayerRepository>();
         serviceCollection.AddScoped<IPlayRepository, PlayRepository>();
         serviceCollection.AddDbContext<ApiDbContext>(options => options.UseSqlServer(connectionString));
     }

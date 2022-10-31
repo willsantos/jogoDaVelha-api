@@ -10,6 +10,7 @@ public static class ConfigureMappers
         var config = new AutoMapper.MapperConfiguration(cnf =>
         {
             cnf.AddProfile(new PlayerEntityToContractMap());
+            cnf.AddProfile(new GameEntityToContractMap());
         });
 
         var mapConfiguration = config.CreateMapper();

@@ -16,10 +16,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\WIlson.JogoDaVelha.Domain\WIlson.JogoDaVelha.Domain.csproj" />
       <ProjectReference Include="..\Wilson.JogoDaVelha.IoC\Wilson.JogoDaVelha.IoC.csproj" />
     </ItemGroup>

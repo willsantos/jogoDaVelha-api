@@ -1,13 +1,20 @@
-﻿using WIlson.JogoDaVelha.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using WIlson.JogoDaVelha.Domain.Entities;
 using WIlson.JogoDaVelha.Domain.Interfaces.Repositories;
 
 namespace Wilson.JogoDaVelha.Repository;
 
 public class PlayerRepository : IPlayerRepository
 {
-    public Task<IEnumerable<PlayerEntity>> Get()
+    private readonly ApiDbContext _context;
+
+    public PlayerRepository(ApiDbContext context)
     {
-        throw new NotImplementedException();
+        _context = context;
+    }
+    public async Task<IEnumerable<PlayerEntity>> Get()
+    {
+        return await _context.Players.AsNoTracking().ToListAsync();
     }
 
     public Task<PlayerEntity> GetById(int id)
@@ -15,9 +22,11 @@ public class PlayerRepository : IPlayerRepository
         throw new NotImplementedException();
     }
 
-    public Task<PlayerEntity> Post(PlayerEntity request)
+    public async Task<PlayerEntity> Post(PlayerEntity request)
     {
-        throw new NotImplementedException();
+        await _context.Players.AddAsync(request);
+        await _context.SaveChangesAsync();
+        return request;
     }
 
     public Task<PlayerEntity> Put(PlayerEntity request, int? id)
