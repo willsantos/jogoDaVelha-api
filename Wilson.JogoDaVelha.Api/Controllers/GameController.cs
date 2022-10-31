@@ -8,7 +8,7 @@ namespace Wilson.JogoDaVelha.Api.Controllers;
 [Route("[controller]")]
 public class GameController : ControllerBase
 {
-    public readonly IGameService _gameService;
+    private readonly IGameService _gameService;
 
     public GameController(IGameService gameService)
     {

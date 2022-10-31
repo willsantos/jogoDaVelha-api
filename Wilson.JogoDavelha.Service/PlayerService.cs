@@ -23,9 +23,15 @@ public class PlayerService : IPlayerService
         return _mapper.Map<IEnumerable<PlayerResponse>>(listAllPlayers);
     }
 
-    public Task<PlayerResponse> GetById(int id)
+    public async Task<PlayerResponse> GetById(int id)
     {
-        throw new NotImplementedException();
+       
+            var player = await _playerRepository.GetById(id);
+            
+            if(player == null)
+                throw new Exception("Usuário não existe");
+        
+            return _mapper.Map<PlayerResponse>(player);
     }
 
     public async Task<PlayerResponse> Post(PlayerRequest request)

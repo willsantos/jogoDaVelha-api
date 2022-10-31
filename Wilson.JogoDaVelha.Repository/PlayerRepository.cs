@@ -17,9 +17,9 @@ public class PlayerRepository : IPlayerRepository
         return await _context.Players.AsNoTracking().ToListAsync();
     }
 
-    public Task<PlayerEntity> GetById(int id)
+    public async  Task<PlayerEntity> GetById(int id)
     {
-        throw new NotImplementedException();
+       return await  _context.Players.Where(prop=> prop.Id==id).AsNoTracking().FirstOrDefaultAsync();
     }
 
     public async Task<PlayerEntity> Post(PlayerEntity request)
