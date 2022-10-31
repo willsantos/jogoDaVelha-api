@@ -15,7 +15,4 @@ public class GameResponse
 
     public GameStatusEnum Status { get; set; }
     
-    public IList<PlayerEntity> Players { get; set; }
-
-    
 }

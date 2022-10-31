@@ -11,6 +11,7 @@ public static class ConfigureMappers
         {
             cnf.AddProfile(new PlayerEntityToContractMap());
             cnf.AddProfile(new GameEntityToContractMap());
+            cnf.AddProfile(new PlayEntityToContractMap());
         });
 
         var mapConfiguration = config.CreateMapper();

@@ -11,10 +11,10 @@ public class GameEntity
 
     public DateTime Date { get; set; }
     
-    [ForeignKey("player"), Column(Order = 0)]
+    [ForeignKey("players"), Column(Order = 0)]
     public int PlayerA { get; set; }
 
-    [ForeignKey("player"), Column(Order = 1)]
+    [ForeignKey("players"), Column(Order = 1)]
     public int PlayerB { get; set; }
 
     public GameStatusEnum Status { get; set; } = GameStatusEnum.Preparing;

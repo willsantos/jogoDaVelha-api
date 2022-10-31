@@ -12,7 +12,7 @@ public class PlayEntity
     [ForeignKey("game")]
     public int GameId { get; set; }
 
-    [ForeignKey("game")]
+    [ForeignKey("player")]
     public int PlayerId { get; set; }
 
     public PlaySymbolEnum Symbol { get; set; }

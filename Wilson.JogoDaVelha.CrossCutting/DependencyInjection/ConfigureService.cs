@@ -10,6 +10,7 @@ public static class ConfigureService
     {
         serviceColletion.AddScoped<IGameService, GameService>();
         serviceColletion.AddScoped<IPlayerService, PlayerService>();
+        serviceColletion.AddScoped<IPlayService, PlayService>();
 
     }
     
