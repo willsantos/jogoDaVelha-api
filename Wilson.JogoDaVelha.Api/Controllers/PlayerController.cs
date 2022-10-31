@@ -25,6 +25,16 @@ public class PlayerController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] PlayerRequest playerRequest)
     {
-        return Ok(await _playerService.Post(playerRequest));
+        try
+        {
+            var result = await _playerService.Post(playerRequest);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+        
+        
     }
 }

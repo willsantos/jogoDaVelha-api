@@ -30,6 +30,12 @@ public class PlayerService : IPlayerService
 
     public async Task<PlayerResponse> Post(PlayerRequest request)
     {
+        if (string.IsNullOrWhiteSpace(request.Name))
+            throw new ArgumentException("Precisa informar o nome do usuário");
+        if (string.IsNullOrWhiteSpace(request.Password))
+            throw new ArgumentException("Precisa informar uma senha");
+        
+        
         var playerRequest = _mapper.Map<PlayerEntity>(request);
         var playerPosted = await _playerRepository.Post(playerRequest);
         return _mapper.Map<PlayerResponse>(playerPosted);
