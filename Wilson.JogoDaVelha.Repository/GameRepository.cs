@@ -19,9 +19,9 @@ public class GameRepository : IGameRepository
         return await _context.Games.AsNoTracking().ToListAsync();
     }
 
-    public Task<GameEntity> GetById(int id)
+    public async Task<GameEntity> GetById(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Games.AsNoTracking().FirstOrDefaultAsync();
     }
 
     public async Task<GameEntity> Post(GameEntity request)

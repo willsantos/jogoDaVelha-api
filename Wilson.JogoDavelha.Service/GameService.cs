@@ -26,9 +26,10 @@ public class GameService : IGameService
         return _mapper.Map<IEnumerable<GameResponse>>(listAllGames);
     }
 
-    public Task<GameResponse> GetById(int id)
+    public async Task<GameResponse> GetById(int id)
     {
-        throw new NotImplementedException();
+        var result = await _gameRepository.GetById(id);
+        return _mapper.Map<GameResponse>(result);
     }
 
     public async Task<GameResponse> Post(GameRequest request)
@@ -50,9 +51,19 @@ public class GameService : IGameService
         return _mapper.Map<GameResponse>(gamePosted);
     }
 
+    
+
+    public Task<GameResponse> Put(GameRequest request, int? id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task Delete(int request)
+    {
+        throw new NotImplementedException();
+    }
     private async Task<bool> CheckUserExists(int player)
     {
-
         try
         {
             
@@ -65,14 +76,5 @@ public class GameService : IGameService
         }
 
     }
-
-    public Task<GameResponse> Put(GameRequest request, int? id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task Delete(int request)
-    {
-        throw new NotImplementedException();
-    }
+    
 }

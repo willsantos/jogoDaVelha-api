@@ -20,9 +20,15 @@ public class GameController : ControllerBase
     {
         return Ok(await _gameService.Get());
     }
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        return Ok(await _gameService.GetById(id));
+    }
+    
 
     [HttpPost]
-    public async Task<IActionResult> Get([FromBody] GameRequest gameRequest)
+    public async Task<IActionResult> Post([FromBody] GameRequest gameRequest)
     {
         return Ok(await _gameService.Post(gameRequest));
     }
