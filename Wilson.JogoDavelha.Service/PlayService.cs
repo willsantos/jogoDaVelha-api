@@ -42,13 +42,47 @@ public class PlayService : IPlayService
         if(!await CheckGameExists(request.GameId))
             throw new ArgumentException("Partida não existe");
 
-        await CheckPlayerInGame(request.PlayerId,request.GameId);
+        if(!await CheckPlayerInGame(request.PlayerId, request.GameId))
+            throw new ArgumentException("Jogador não está nessa partida");
         
+        if (!await CheckPositionIsValid(request.Position, request.GameId))
+            throw new ArgumentException("Posição Invalida");
+        
+        if (!await CheckTurn(request.PlayerId, request.GameId))
+            throw new Exception("Não é a vez desse jogador");
         
         var playEntity = _mapper.Map<PlayEntity>(request);
         var playCreated = await _playRepository.Post(playEntity);
         
         return _mapper.Map<PlayResponse>(playCreated);
+    }
+
+    private async Task<bool> CheckTurn(int playerId, int gameId)
+    {
+        var lastplay = await  _playRepository.GetLastPlay(gameId);
+        if(lastplay.PlayerId == playerId)
+            return false;
+        return true;
+        
+    }
+
+    private async Task<bool> CheckPositionIsValid(string requestPosition, int gameId)
+    {
+        
+        var position = requestPosition.Split(",")?.Select(Int32.Parse)?.ToArray();
+
+        if (position[0] > 3 || position[0] < 1 || position[1] > 3 || position[1] < 1 || position.Length<1)
+            return false;
+        var plays = await GetPlayByGameId(gameId);
+        foreach (var item in plays)
+        {
+           var newPosition= string.Join(",", position);
+
+           if (item.Position == newPosition)
+               return false;
+        }
+
+        return true;
     }
 
     private async Task<bool> CheckPlayerInGame(int playerId, int gameId)

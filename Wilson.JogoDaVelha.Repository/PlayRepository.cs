@@ -27,6 +27,11 @@ public class PlayRepository: IPlayRepository
         return await _context.Plays.Where(prop=>prop.Id ==id).AsNoTracking().FirstOrDefaultAsync();
     }
 
+    public async Task<PlayEntity> GetLastPlay(int gameId)
+    {
+        return await _context.Plays.Where(prop => prop.GameId == gameId).AsNoTracking().OrderBy(prop=>prop.CreatedAt).LastOrDefaultAsync();
+    }
+
     public async Task<PlayEntity> Post(PlayEntity request)
     {
         await _context.Plays.AddAsync(request);
