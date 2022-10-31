@@ -21,7 +21,7 @@ public class GameRepository : IGameRepository
 
     public async Task<GameEntity> GetById(int id)
     {
-        return await _context.Games.AsNoTracking().FirstOrDefaultAsync();
+        return await _context.Games.Where(prop=>prop.Id == id).AsNoTracking().FirstOrDefaultAsync();
     }
 
     public async Task<GameEntity> Post(GameEntity request)

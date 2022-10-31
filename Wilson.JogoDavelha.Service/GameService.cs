@@ -29,6 +29,9 @@ public class GameService : IGameService
     public async Task<GameResponse> GetById(int id)
     {
         var result = await _gameRepository.GetById(id);
+
+        if (result == null)
+            throw new Exception("Partida Não Existe");
         return _mapper.Map<GameResponse>(result);
     }
 
@@ -41,7 +44,6 @@ public class GameService : IGameService
         if (!await CheckUserExists(request.PlayerB))
             throw new ArgumentException("Jogador B não está cadastrado, utilize a rota de cadastro");
 
-        var status = request.Status;
         if (!Enum.IsDefined(typeof(GameStatusEnum), request.Status))
             throw new ArgumentException("Status de partida invalido");
         
@@ -66,7 +68,6 @@ public class GameService : IGameService
     {
         try
         {
-            
             await _playerService.GetById(player);
             return true;
         }
