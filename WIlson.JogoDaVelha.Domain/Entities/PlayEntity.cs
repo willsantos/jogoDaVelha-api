@@ -4,11 +4,9 @@ using WIlson.JogoDaVelha.Domain.Enums;
 
 namespace WIlson.JogoDaVelha.Domain.Entities;
 
-public class PlayEntity
+public class PlayEntity : BaseEntity
 {
-    [Key]
-    public int Id { get; set; }
-
+   
     [ForeignKey("game")]
     public int GameId { get; set; }
 
@@ -19,7 +17,7 @@ public class PlayEntity
 
     public string Position { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+
     
     public GameEntity Game { get; set; }
     public PlayerEntity Player { get; set; }

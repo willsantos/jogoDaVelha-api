@@ -29,11 +29,12 @@ public class PlayRepository: IPlayRepository
 
     public async Task<PlayEntity> GetLastPlay(int gameId)
     {
-        return await _context.Plays.Where(prop => prop.GameId == gameId).AsNoTracking().OrderBy(prop=>prop.CreatedAt).LastOrDefaultAsync();
+        return await _context.Plays.Where(prop => prop.GameId == gameId).OrderBy(prop=>prop.CreatedAt).AsNoTracking().LastOrDefaultAsync();
     }
 
     public async Task<PlayEntity> Post(PlayEntity request)
     {
+        request.CreatedAt = DateTime.Now;
         await _context.Plays.AddAsync(request);
         await _context.SaveChangesAsync();
         return request;

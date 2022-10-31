@@ -59,7 +59,9 @@ public class PlayService : IPlayService
 
     private async Task<bool> CheckTurn(int playerId, int gameId)
     {
-        var lastplay = await  _playRepository.GetLastPlay(gameId);
+        var lastplay = await _playRepository.GetLastPlay(gameId);
+        if (lastplay == null)
+            return true;
         if(lastplay.PlayerId == playerId)
             return false;
         return true;

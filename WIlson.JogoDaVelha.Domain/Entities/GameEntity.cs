@@ -4,10 +4,9 @@ using WIlson.JogoDaVelha.Domain.Enums;
 
 namespace WIlson.JogoDaVelha.Domain.Entities;
 
-public class GameEntity
+public class GameEntity : BaseEntity
 {
-    [Key]
-    public int Id { get; set; }
+    
 
     public DateTime Date { get; set; }
     
@@ -18,10 +17,6 @@ public class GameEntity
     public int PlayerB { get; set; }
 
     public GameStatusEnum Status { get; set; } = GameStatusEnum.Preparing;
-
-    public DateTime CreatedAt { get; set; }
-
-    public DateTime? EditedAt { get; set; } = null;
 
     public DateTime? DeletedAt { get; set; } = null;
     
