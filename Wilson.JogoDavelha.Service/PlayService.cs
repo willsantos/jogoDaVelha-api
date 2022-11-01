@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using AutoMapper;
+using WIlson.JogoDaVelha.Domain.Contracts.Game;
 using WIlson.JogoDaVelha.Domain.Contracts.Play;
 using WIlson.JogoDaVelha.Domain.Contracts.Player;
 using WIlson.JogoDaVelha.Domain.Entities;
+using WIlson.JogoDaVelha.Domain.Enums;
 using WIlson.JogoDaVelha.Domain.Interfaces.Repositories;
 using WIlson.JogoDaVelha.Domain.Interfaces.Services;
 
@@ -49,6 +51,8 @@ public class PlayService : IPlayService
     {
         if (!await CheckGameExists(request.GameId))
             throw new ArgumentException("Partida não existe");
+        if (!await CheckGameStatus(request.GameId))
+            throw new ArgumentException("Essa partida já foi encerrada");
 
         if (!await CheckPlayerInGame(request.PlayerId, request.GameId))
             throw new ArgumentException("Jogador não está nessa partida");
@@ -61,12 +65,48 @@ public class PlayService : IPlayService
 
         var playEntity = _mapper.Map<PlayEntity>(request);
         var playCreated = await _playRepository.Post(playEntity);
-        if (await CheckVitory(request.PlayerId, request.GameId))
+        if (await CheckVictory(request.PlayerId, request.GameId))
+        {
+            var gameDatabase= _mapper.Map<GameEntity>(await _gameService.GetById(request.GameId));
+            gameDatabase.Status = GameStatusEnum.Finished;
+            var gameUpdated = _mapper.Map<GameRequest>(gameDatabase);
+            await _gameService.Put(gameUpdated,null);
             throw new Exception($"O jogador {request.PlayerId} venceu!");
+        }
+            
         return _mapper.Map<PlayResponse>(playCreated);
     }
 
-    private async Task<bool> CheckVitory(int playerId, int gameId)
+    
+   
+
+    private async Task<bool> CheckGameExists(int gameId)
+    {
+        try
+        {
+            await _gameService.GetById(gameId);
+            return true;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
+    private async Task<bool> CheckGameStatus(int gameId)
+    {
+        var game = await _gameService.GetById(gameId);
+        if (game.Status == GameStatusEnum.Finished)
+            return false;
+        return true;
+    }
+    
+    private async Task<bool> CheckPlayerInGame(int playerId, int gameId)
+    {
+        var game = await _gameService.GetById(gameId);
+        return game.PlayerA == playerId || game.PlayerB == playerId;
+    }
+
+    private async Task<bool> CheckVictory(int playerId, int gameId)
     {
         var plays = await GetPlaysByPlayer(gameId, playerId);
 
@@ -130,24 +170,7 @@ public class PlayService : IPlayService
         return true;
     }
 
-    private async Task<bool> CheckPlayerInGame(int playerId, int gameId)
-    {
-        var game = await _gameService.GetById(gameId);
-        return game.PlayerA == playerId || game.PlayerB == playerId;
-    }
-
-    private async Task<bool> CheckGameExists(int gameId)
-    {
-        try
-        {
-            await _gameService.GetById(gameId);
-            return true;
-        }
-        catch (Exception)
-        {
-            return false;
-        }
-    }
+    
 
     public Task<PlayResponse> Put(PlayRequest request, int? id)
     {

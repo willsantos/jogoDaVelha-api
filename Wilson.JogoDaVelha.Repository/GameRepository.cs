@@ -33,9 +33,11 @@ public class GameRepository : IGameRepository
         return request;
     }
 
-    public Task<GameEntity> Put(GameEntity request, int? id)
+    public async Task<GameEntity> Put(GameEntity request, int? id=null)
     {
-        throw new NotImplementedException();
+        _context.Games.Update(request);
+        await _context.SaveChangesAsync();
+        return request;
     }
 
     public Task Delete(int request)

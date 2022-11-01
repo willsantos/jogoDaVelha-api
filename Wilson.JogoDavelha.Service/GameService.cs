@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using WIlson.JogoDaVelha.Domain.Contracts.Game;
+using WIlson.JogoDaVelha.Domain.Contracts.Play;
 using WIlson.JogoDaVelha.Domain.Entities;
 using WIlson.JogoDaVelha.Domain.Enums;
 using WIlson.JogoDaVelha.Domain.Interfaces.Repositories;
@@ -13,13 +14,13 @@ public class GameService : IGameService
     private readonly IPlayerService _playerService;
     public readonly IMapper _mapper;
 
-    public GameService(IGameRepository gameRepository,IPlayerService playerService, IMapper mapper)
+    public GameService(IGameRepository gameRepository, IPlayerService playerService, IMapper mapper)
     {
         _gameRepository = gameRepository;
         _playerService = playerService;
         _mapper = mapper;
     }
-    
+
     public async Task<IEnumerable<GameResponse>> Get()
     {
         var listAllGames = await _gameRepository.Get();
@@ -46,24 +47,27 @@ public class GameService : IGameService
 
         if (!Enum.IsDefined(typeof(GameStatusEnum), request.Status))
             throw new ArgumentException("Status de partida invalido");
-        
-        
+
+
         var gameRequest = _mapper.Map<GameEntity>(request);
         var gamePosted = await _gameRepository.Post(gameRequest);
         return _mapper.Map<GameResponse>(gamePosted);
     }
 
-    
 
-    public Task<GameResponse> Put(GameRequest request, int? id)
+    public async Task<GameResponse> Put(GameRequest request, int? id )
     {
-        throw new NotImplementedException();
+        var gameInDatabase = await _gameRepository.GetById((int)id);
+        gameInDatabase.Status = request.Status;
+        var gameCreated = await _gameRepository.Put(gameInDatabase, null);
+        return _mapper.Map<GameResponse>(gameCreated);
     }
 
     public Task Delete(int request)
     {
         throw new NotImplementedException();
     }
+
     private async Task<bool> CheckUserExists(int player)
     {
         try
@@ -71,11 +75,9 @@ public class GameService : IGameService
             await _playerService.GetById(player);
             return true;
         }
-        catch (Exception )
+        catch (Exception)
         {
             return false;
         }
-
     }
-    
 }
