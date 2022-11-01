@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilson.JogoDavelha.Service"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilson.JogoDaVelha.Repository", "Wilson.JogoDaVelha.Repository\Wilson.JogoDaVelha.Repository.csproj", "{71D8F93D-0E58-472C-9BD7-20EB4FF77E6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilson.JogoDaVelha.Tests", "Wilson.JogoDaVelha.Tests\Wilson.JogoDaVelha.Tests.csproj", "{C3213F16-B70C-4A07-B94B-EAF430F6675B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{71D8F93D-0E58-472C-9BD7-20EB4FF77E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71D8F93D-0E58-472C-9BD7-20EB4FF77E6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71D8F93D-0E58-472C-9BD7-20EB4FF77E6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3213F16-B70C-4A07-B94B-EAF430F6675B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3213F16-B70C-4A07-B94B-EAF430F6675B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3213F16-B70C-4A07-B94B-EAF430F6675B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3213F16-B70C-4A07-B94B-EAF430F6675B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
