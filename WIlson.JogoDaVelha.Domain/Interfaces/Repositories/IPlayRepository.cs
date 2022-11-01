@@ -6,4 +6,5 @@ public interface IPlayRepository : IBaseCrud<PlayEntity,PlayEntity>
 {
     Task<IEnumerable<PlayEntity>> Get(int id);
     Task<PlayEntity> GetLastPlay(int gameId);
+    Task<IEnumerable<PlayEntity>> GetPlaysByPlayer(int gameId, int playerId);
 }

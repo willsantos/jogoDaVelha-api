@@ -32,6 +32,12 @@ public class PlayRepository: IPlayRepository
         return await _context.Plays.Where(prop => prop.GameId == gameId).OrderBy(prop=>prop.CreatedAt).AsNoTracking().LastOrDefaultAsync();
     }
 
+    public async Task<IEnumerable<PlayEntity>> GetPlaysByPlayer(int gameId, int playerId)
+    {
+        return await _context.Plays.Where(prop => prop.GameId == gameId && prop.PlayerId == playerId)
+            .AsNoTracking().ToListAsync();
+    }
+
     public async Task<PlayEntity> Post(PlayEntity request)
     {
         request.CreatedAt = DateTime.Now;
